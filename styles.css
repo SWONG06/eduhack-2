@@ -2,520 +2,715 @@
    CUSTOM CSS VARIABLES PARA TEMAS
    ============================================ */
 
-   :root {
-    /* Colores base - Modo Claro */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    
-    /* Colores primarios */
-    --primary: 258 90% 66%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    
-    /* Colores mutados */
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    
-    /* Colores de acento */
-    --accent: 197 71% 73%;
-    --accent-foreground: 240 5.9% 10%;
-    
-    /* Estados */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    
-    /* Bordes e inputs */
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 258 90% 66%;
-    --radius: 0.75rem;
-    
-    /* Colores tecnológicos */
-    --tech-primary: 258 90% 66%;
-    --tech-secondary: 197 71% 73%;
-    --tech-accent: 280 100% 70%;
-    
-    /* Navbar */
-    --navbar-bg: 0 0% 100%;
-    --navbar-border: 240 5.9% 90%;
-    --navbar-text: 240 10% 3.9%;
-    
-    /* Gradientes */
-    --hero-gradient: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(197 71% 73%) 50%, hsl(280 100% 70%) 100%);
-    --section-bg-alt: 240 4.8% 95.9%;
+:root {
+  /* Colores base - Modo Claro */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  
+  /* Colores primarios */
+  --primary: 258 90% 66%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  
+  /* Colores mutados */
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  
+  /* Colores de acento */
+  --accent: 197 71% 73%;
+  --accent-foreground: 240 5.9% 10%;
+  
+  /* Estados */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  
+  /* Bordes e inputs */
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 258 90% 66%;
+  --radius: 0.75rem;
+  
+  /* Colores tecnológicos */
+  --tech-primary: 258 90% 66%;
+  --tech-secondary: 197 71% 73%;
+  --tech-accent: 280 100% 70%;
+  
+  /* Navbar */
+  --navbar-bg: 0 0% 100%;
+  --navbar-border: 240 5.9% 90%;
+  --navbar-text: 240 10% 3.9%;
+  
+  /* Gradientes */
+  --hero-gradient: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(197 71% 73%) 50%, hsl(280 100% 70%) 100%);
+  --section-bg-alt: 240 4.8% 95.9%;
+}
+
+/* ============================================
+   MODO OSCURO
+   ============================================ */
+
+.dark {
+  /* Colores base - Modo Oscuro */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  
+  /* Colores primarios */
+  --primary: 258 90% 66%;
+  --primary-foreground: 240 10% 3.9%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  
+  /* Colores mutados */
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  
+  /* Colores de acento */
+  --accent: 197 71% 73%;
+  --accent-foreground: 240 10% 3.9%;
+  
+  /* Estados */
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  /* Bordes e inputs */
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 258 90% 66%;
+  
+  /* Navbar */
+  --navbar-bg: 240 10% 3.9%;
+  --navbar-border: 240 3.7% 15.9%;
+  --navbar-text: 0 0% 98%;
+  
+  /* Secciones alternas */
+  --section-bg-alt: 240 3.7% 15.9%;
+}
+
+/* ============================================
+   ESTILOS GLOBALES
+   ============================================ */
+
+* {
+  border-color: hsl(var(--border));
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ============================================
+   TRANSICIONES DE TEMA
+   ============================================ */
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *:before,
+html.theme-transition *:after {
+  transition: background-color 0.4s ease, 
+              color 0.4s ease, 
+              border-color 0.4s ease !important;
+  transition-delay: 0s !important;
+}
+
+/* ============================================
+   COMPONENTES BÁSICOS
+   ============================================ */
+
+/* Tarjetas */
+.card {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: hsl(var(--ring) / 0.5);
+  box-shadow: 0 0 20px hsl(var(--ring) / 0.1);
+}
+
+/* Botones */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  padding: 0.625rem 1.25rem;
+}
+
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.button:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+.button-primary {
+  background: var(--hero-gradient);
+  color: hsl(var(--primary-foreground));
+}
+
+.button-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.button-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.button-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.8);
+}
+
+/* Inputs */
+.input {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--input));
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
+  outline: none;
+}
+
+.input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: hsl(var(--muted));
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+/* ============================================
+   NAVBAR Y NAVEGACIÓN
+   ============================================ */
+
+nav {
+  background-color: hsl(var(--navbar-bg));
+  color: hsl(var(--navbar-text));
+  border-bottom: 1px solid hsl(var(--navbar-border));
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  position: relative;
+  color: hsl(var(--navbar-text));
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--tech-primary)), transparent);
+  transition: left 0.3s ease;
+}
+
+.nav-link:hover {
+  color: hsl(var(--primary));
+}
+
+.nav-link:hover::after {
+  left: 100%;
+}
+
+.nav-link.active {
+  color: hsl(var(--primary));
+  position: relative;
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+}
+
+/* ============================================
+   SECCIONES
+   ============================================ */
+
+section {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: background-color 0.3s ease;
+}
+
+section:nth-child(even) {
+  background-color: hsl(var(--section-bg-alt) / 0.3);
+}
+
+.hero-section {
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+  color: hsl(var(--foreground));
+}
+
+.dark .hero-section {
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+}
+
+/* ============================================
+   TEXTOS Y TIPOGRAFÍA
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: hsl(var(--foreground));
+  font-weight: 900;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+p {
+  color: hsl(var(--muted-foreground));
+  transition: color 0.3s ease;
+}
+
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: hsl(var(--accent));
+}
+
+/* ============================================
+   EFECTOS Y ANIMACIONES
+   ============================================ */
+
+.glass {
+  background: hsl(var(--background) / 0.8);
+  border: 1px solid hsl(var(--border));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.text-gradient {
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  /* ============================================
-     MODO OSCURO
-     ============================================ */
-  
-  .dark {
-    /* Colores base - Modo Oscuro */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    
-    /* Colores primarios */
-    --primary: 258 90% 66%;
-    --primary-foreground: 240 10% 3.9%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    
-    /* Colores mutados */
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    
-    /* Colores de acento */
-    --accent: 197 71% 73%;
-    --accent-foreground: 240 10% 3.9%;
-    
-    /* Estados */
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    
-    /* Bordes e inputs */
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 258 90% 66%;
-    
-    /* Navbar */
-    --navbar-bg: 240 10% 3.9%;
-    --navbar-border: 240 3.7% 15.9%;
-    --navbar-text: 0 0% 98%;
-    
-    /* Secciones alternas */
-    --section-bg-alt: 240 3.7% 15.9%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* ============================================
-     ESTILOS GLOBALES
-     ============================================ */
-  
-  * {
-    border-color: hsl(var(--border));
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
   }
-  
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.floating-particle {
+  position: absolute;
+  animation: float 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   COUNTDOWN TIMER
+   ============================================ */
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+.time-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.time-label {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   SISTEMA DE BÚSQUEDA
+   ============================================ */
+
+.search-container {
+  position: relative;
+  z-index: 100;
+}
+
+#search-box {
+  z-index: 1000;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform-origin: top right;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dark #search-box {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+#search-results {
+  scrollbar-width: thin;
+  scrollbar-color: #8b5cf6 transparent;
+}
+
+#search-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+#search-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#search-results::-webkit-scrollbar-thumb {
+  background-color: #8b5cf6;
+  border-radius: 3px;
+}
+
+#search-results::-webkit-scrollbar-thumb:hover {
+  background-color: #7c3aed;
+}
+
+#search-results button {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+#search-results button:hover {
+  background-color: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.2);
+  transform: translateX(4px);
+}
+
+.dark #search-results button:hover {
+  background-color: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--tech-primary) / 0.3);
+  border-radius: 5px;
+  border: 2px solid hsl(var(--background));
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--tech-primary) / 0.6);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--tech-primary) / 0.3) hsl(var(--background));
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON
+   ============================================ */
+
+.theme-toggle-btn,
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover,
+#theme-toggle:hover {
+  background-color: hsl(var(--secondary));
+  transform: scale(1.05);
+}
+
+.theme-toggle-btn svg,
+#theme-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover svg,
+#theme-toggle:hover svg {
+  transform: rotate(12deg);
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================
+   ACCESIBILIDAD
+   ============================================ */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   MODO IMPRESIÓN
+   ============================================ */
+
+@media print {
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: 'Inter', sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    min-height: 100vh;
-    line-height: 1.6;
+    background-color: white;
+    color: black;
   }
-  
-  /* ============================================
-     COMPONENTES BÁSICOS
-     ============================================ */
-  
-  /* Tarjetas */
-  .card {
-    background-color: hsl(var(--card));
-    color: hsl(var(--card-foreground));
-    border: 1px solid hsl(var(--border));
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
+
+  nav, footer {
+    display: none;
   }
-  
-  .card:hover {
-    border-color: hsl(var(--ring) / 0.5);
-    box-shadow: 0 0 20px hsl(var(--ring) / 0.1);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
   }
-  
-  /* Botones */
+
   .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-    font-size: 0.875rem;
-    font-weight: 600;
-    outline: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    padding: 0.625rem 1.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
-  
-  .button:disabled {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-  
-  .button:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-  }
-  
-  .button-primary {
-    background: var(--hero-gradient);
-    color: hsl(var(--primary-foreground));
-  }
-  
-  .button-primary:hover {
-    filter: brightness(1.1);
-    transform: translateY(-2px);
-  }
-  
-  .button-secondary {
-    background-color: hsl(var(--secondary));
-    color: hsl(var(--secondary-foreground));
-  }
-  
-  .button-secondary:hover {
-    background-color: hsl(var(--secondary) / 0.8);
-  }
-  
-  /* Inputs */
-  .input {
-    display: flex;
-    height: 2.5rem;
-    width: 100%;
-    border-radius: var(--radius);
-    border: 1px solid hsl(var(--input));
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-  }
-  
-  .input:focus {
-    border-color: hsl(var(--ring));
-    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
-    outline: none;
-  }
-  
-  .input::placeholder {
-    color: hsl(var(--muted-foreground));
-  }
-  
-  .input:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    background-color: hsl(var(--muted));
-  }
-  
-  /* Badges */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 9999px;
-    border: 1px solid hsl(var(--border));
-    padding: 0.375rem 0.875rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    background-color: hsl(var(--secondary));
-    color: hsl(var(--secondary-foreground));
-    transition: all 0.2s ease;
-  }
-  
-  .badge:hover {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-  }
-  
-  /* ============================================
-     NAVBAR Y NAVEGACIÓN
-     ============================================ */
-  
+
   nav {
-    background-color: hsl(var(--navbar-bg));
-    color: hsl(var(--navbar-text));
-    border-bottom: 1px solid hsl(var(--navbar-border));
-    transition: all 0.3s ease;
+    padding: 1rem;
   }
-  
-  .nav-link {
-    position: relative;
-    color: hsl(var(--navbar-text));
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    overflow: hidden;
+
+  .time-value {
+    font-size: 2rem;
   }
-  
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -100%;
+
+  #search-box {
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .button {
     width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--tech-primary)), transparent);
-    transition: left 0.3s ease;
   }
-  
-  .nav-link:hover {
-    color: hsl(var(--primary));
+
+  .time-value {
+    font-size: 1.75rem;
   }
-  
-  .nav-link:hover::after {
-    left: 100%;
+}
+
+/* ============================================
+   PREFERENCIA DEL SISTEMA
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
   }
-  
-  /* ============================================
-     SECCIONES
-     ============================================ */
-  
-  section {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    transition: background-color 0.3s ease;
+
+  :root.light {
+    color-scheme: light;
   }
-  
-  section:nth-child(even) {
-    background-color: hsl(var(--section-bg-alt) / 0.3);
-  }
-  
-  .hero-section {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
-    color: hsl(var(--foreground));
-  }
-  
-  .dark .hero-section {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
-  }
-  
-  /* ============================================
-     TEXTOS Y TIPOGRAFÍA
-     ============================================ */
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: hsl(var(--foreground));
-    font-weight: 900;
-    line-height: 1.2;
-    transition: color 0.3s ease;
-  }
-  
-  p {
-    color: hsl(var(--muted-foreground));
-    transition: color 0.3s ease;
-  }
-  
-  a {
-    color: hsl(var(--primary));
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: hsl(var(--accent));
-  }
-  
-  /* ============================================
-     EFECTOS Y ANIMACIONES
-     ============================================ */
-  
-  .glass {
-    background: hsl(var(--background) / 0.8);
-    border: 1px solid hsl(var(--border));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  
-  .text-gradient {
-    background: var(--hero-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 3s ease infinite;
-  }
-  
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-  
-  @keyframes pulse-glow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-  
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-  }
-  
-  /* ============================================
-     SCROLLBAR PERSONALIZADO
-     ============================================ */
-  
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: hsl(var(--background));
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--tech-primary) / 0.3);
-    border-radius: 5px;
-    border: 2px solid hsl(var(--background));
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--tech-primary) / 0.6);
-  }
-  
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--tech-primary) / 0.3) hsl(var(--background));
-  }
-  
-  /* ============================================
-     ACCESIBILIDAD
-     ============================================ */
-  
-  button:focus-visible,
-  a:focus-visible,
-  input:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-  
-  /* ============================================
-     MODO IMPRESIÓN
-     ============================================ */
-  
-  @media print {
-    body {
-      background-color: white;
-      color: black;
-    }
-  
-    nav, footer {
-      display: none;
-    }
-  }
-  
-  /* ============================================
-     RESPONSIVE DESIGN
-     ============================================ */
-  
-  @media (max-width: 768px) {
-    body {
-      font-size: 14px;
-    }
-  
-    .button {
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-    }
-  
-    nav {
-      padding: 1rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-  
-    h2 {
-      font-size: 1.25rem;
-    }
-  
-    .button {
-      width: 100%;
-    }
-  }
-  
-  /* ============================================
-     PREFERENCIA DEL SISTEMA
-     ============================================ */
-  
-  @media (prefers-color-scheme: dark) {
-    :root:not(.light) {
-      color-scheme: dark;
-    }
-  
-    :root.light {
-      color-scheme: light;
-    }
-  }
+}

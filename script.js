@@ -1,4 +1,6 @@
-// Theme Management - Sistema completo de temas claro/oscuro
+// ===============================
+// 🌗 THEME MANAGER
+// ===============================
 class ThemeManager {
   constructor() {
     this.STORAGE_KEY = 'eduhack-theme';
@@ -8,79 +10,53 @@ class ThemeManager {
   }
 
   init() {
+    document.documentElement.classList.add(this.LIGHT_CLASS);
     this.loadSavedTheme();
     this.setupThemeToggle();
     this.watchSystemPreference();
   }
 
-  /**
-   * Carga el tema guardado o usa la preferencia del sistema
-   */
   loadSavedTheme() {
     const savedTheme = localStorage.getItem(this.STORAGE_KEY);
-    const html = document.documentElement;
-
-    if (savedTheme === 'dark') {
-      this.setTheme('dark');
-    } else if (savedTheme === 'light') {
-      this.setTheme('light');
+    
+    if (savedTheme) {
+      this.setTheme(savedTheme);
     } else {
-      // Usar preferencia del sistema
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       this.setTheme(prefersDark ? 'dark' : 'light');
     }
   }
 
-  /**
-   * Aplica el tema a toda la página
-   */
   setTheme(theme) {
     const html = document.documentElement;
-
-    if (theme === 'dark') {
-      html.classList.remove(this.LIGHT_CLASS);
-      html.classList.add(this.DARK_CLASS);
-      localStorage.setItem(this.STORAGE_KEY, 'dark');
-      this.updateThemeAttribute('dark');
-    } else {
-      html.classList.remove(this.DARK_CLASS);
-      html.classList.add(this.LIGHT_CLASS);
-      localStorage.setItem(this.STORAGE_KEY, 'light');
-      this.updateThemeAttribute('light');
-    }
-
+    
+    html.classList.add('theme-transition');
+    setTimeout(() => html.classList.remove('theme-transition'), 400);
+    
+    html.classList.remove(this.LIGHT_CLASS, this.DARK_CLASS);
+    html.classList.add(theme === 'dark' ? this.DARK_CLASS : this.LIGHT_CLASS);
+    
+    localStorage.setItem(this.STORAGE_KEY, theme);
+    
+    this.updateThemeAttribute(theme);
     this.updateToggleButton();
     this.dispatchThemeChangeEvent(theme);
   }
 
-  /**
-   * Cambia entre tema claro y oscuro
-   */
   toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.classList.contains(this.DARK_CLASS);
+    const isDark = this.getCurrentTheme() === 'dark';
     this.setTheme(isDark ? 'light' : 'dark');
   }
 
-  /**
-   * Obtiene el tema actual
-   */
   getCurrentTheme() {
-    const html = document.documentElement;
-    return html.classList.contains(this.DARK_CLASS) ? 'dark' : 'light';
+    return document.documentElement.classList.contains(this.DARK_CLASS) ? 'dark' : 'light';
   }
 
-  /**
-   * Actualiza el atributo data-theme del HTML
-   */
   updateThemeAttribute(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.style.colorScheme = theme;
   }
 
-  /**
-   * Actualiza el estado visual del botón de toggle
-   */
   updateToggleButton() {
     const toggleButton = document.getElementById('theme-toggle');
     if (!toggleButton) return;
@@ -90,19 +66,11 @@ class ThemeManager {
     const isDark = this.getCurrentTheme() === 'dark';
 
     if (sunIcon && moonIcon) {
-      if (isDark) {
-        sunIcon.classList.remove('hidden');
-        moonIcon.classList.add('hidden');
-      } else {
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
-      }
+      sunIcon.classList.toggle('hidden', !isDark);
+      moonIcon.classList.toggle('hidden', isDark);
     }
   }
 
-  /**
-   * Configura el botón toggle
-   */
   setupThemeToggle() {
     const toggleButton = document.getElementById('theme-toggle');
     if (toggleButton) {
@@ -111,9 +79,6 @@ class ThemeManager {
     }
   }
 
-  /**
-   * Observa cambios en la preferencia del sistema
-   */
   watchSystemPreference() {
     const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
@@ -124,9 +89,6 @@ class ThemeManager {
     });
   }
 
-  /**
-   * Dispara un evento personalizado cuando cambia el tema
-   */
   dispatchThemeChangeEvent(theme) {
     const event = new CustomEvent('themeChange', {
       detail: { theme },
@@ -136,7 +98,9 @@ class ThemeManager {
   }
 }
 
-// Navigation Manager
+// ===============================
+// 🧭 NAVIGATION MANAGER
+// ===============================
 class NavigationManager {
   constructor() {
     this.init();
@@ -163,7 +127,8 @@ class NavigationManager {
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
           navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
+            const linkHref = link.getAttribute('onclick');
+            if (linkHref && linkHref.includes(`'${sectionId}'`)) {
               link.classList.add('active');
             }
           });
@@ -181,6 +146,15 @@ class NavigationManager {
         top: elementTop - navOffset,
         behavior: 'smooth'
       });
+      
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        if (menuIcon) menuIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+      }
     }
   }
 
@@ -189,7 +163,7 @@ class NavigationManager {
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = anchor.getAttribute('href').substring(1);
-        this.scrollToSection(targetId);
+        if (targetId) this.scrollToSection(targetId);
       });
     });
   }
@@ -197,16 +171,22 @@ class NavigationManager {
   setupMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
 
     if (mobileMenuButton && mobileMenu) {
       mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        if (menuIcon) menuIcon.classList.toggle('hidden');
+        if (closeIcon) closeIcon.classList.toggle('hidden');
       });
     }
   }
 }
 
-// Countdown Timer
+// ===============================
+// ⏳ COUNTDOWN TIMER
+// ===============================
 class CountdownTimer {
   constructor(targetDate, elementId) {
     this.targetDate = new Date(targetDate).getTime();
@@ -229,7 +209,6 @@ class CountdownTimer {
       const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
       this.render({ days, hours, minutes, seconds });
     } else {
       this.render({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -239,7 +218,6 @@ class CountdownTimer {
 
   render(timeLeft) {
     if (!this.element) return;
-
     this.element.innerHTML = `
       <div class="time-unit">
         <div class="time-value">${String(timeLeft.days).padStart(2, '0')}</div>
@@ -261,7 +239,9 @@ class CountdownTimer {
   }
 }
 
-// Search Functionality
+// ===============================
+// 🔍 SEARCH MANAGER
+// ===============================
 class SearchManager {
   constructor() {
     this.pageContent = [];
@@ -275,29 +255,16 @@ class SearchManager {
   }
 
   indexPageContent() {
-    const selectors = [
-      'h1, h2, h3, h4, h5, h6',
-      'p',
-      'li',
-      '[data-searchable]',
-      '.searchable'
-    ];
+    const selectors = ['h1, h2, h3, h4, h5, h6', 'p', 'li', '[data-searchable]', '.searchable'];
 
     selectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(element => {
         const text = element.textContent?.trim();
         if (text && text.length > 2) {
           const section = element.closest('section') || element.closest('[id]');
-          const sectionTitle = section?.id ||
-            section?.querySelector('h1, h2, h3')?.textContent ||
-            'Contenido general';
-
-          this.pageContent.push({
-            element,
-            text,
-            sectionTitle,
-            score: 0
-          });
+          const sectionTitle = section?.id || section?.querySelector('h1, h2, h3')?.textContent || 'Contenido general';
+          const sectionId = section?.id || '';
+          this.pageContent.push({ element, text, sectionTitle, sectionId, score: 0 });
         }
       });
     });
@@ -307,10 +274,8 @@ class SearchManager {
     const lowerText = text.toLowerCase();
     const lowerQuery = query.toLowerCase();
     let score = 0;
-
     if (lowerText.includes(lowerQuery)) score += 100;
     if (lowerText.startsWith(lowerQuery)) score += 50;
-
     return score;
   }
 
@@ -322,10 +287,7 @@ class SearchManager {
     }
 
     this.searchResults = this.pageContent
-      .map(item => ({
-        ...item,
-        score: this.calculateScore(item.text, query)
-      }))
+      .map(item => ({ ...item, score: this.calculateScore(item.text, query) }))
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 8);
@@ -338,24 +300,22 @@ class SearchManager {
     if (!resultsContainer) return;
 
     if (this.searchResults.length === 0) {
-      resultsContainer.innerHTML = '<p class="text-sm text-muted-foreground px-2 py-4 text-center">No se encontraron resultados</p>';
+      resultsContainer.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400 px-2 py-4 text-center">No se encontraron resultados</p>';
       return;
     }
 
     resultsContainer.innerHTML = this.searchResults.map(result => `
-      <button
-        onclick="searchManager.goToResult('${result.element.id || ''}')"
-        class="block text-sm text-left w-full px-3 py-2 rounded-md hover:bg-muted/70 text-gray-800 dark:text-gray-200 transition-colors"
-      >
+      <button onclick="searchManager.goToResult('${result.sectionId || ''}')" 
+        class="block text-sm text-left w-full px-3 py-2 rounded-md hover:bg-purple-100 dark:hover:bg-purple-900/20 transition-colors text-gray-800 dark:text-gray-200">
         <span class="font-medium text-blue-600 dark:text-blue-400">${result.sectionTitle}</span>
-        <div class="truncate text-xs opacity-70 mt-1">${result.text}</div>
+        <div class="truncate text-xs opacity-70 mt-1">${result.text.substring(0, 100)}...</div>
       </button>
     `).join('');
   }
 
   goToResult(elementId) {
-    if (elementId) {
-      navigationManager.scrollToSection(elementId);
+    if (elementId && window.navigationManager) {
+      window.navigationManager.scrollToSection(elementId);
     }
     this.toggleSearch(false);
     const searchInput = document.getElementById('search-input');
@@ -365,49 +325,29 @@ class SearchManager {
   toggleSearch(show = null) {
     const searchBox = document.getElementById('search-box');
     if (!searchBox) return;
-
     const isVisible = !searchBox.classList.contains('hidden');
-
-    if (show === null) {
-      searchBox.classList.toggle('hidden');
-    } else if (show && isVisible) {
-      return;
-    } else if (!show && !isVisible) {
-      return;
-    } else {
-      searchBox.classList.toggle('hidden', !show);
-    }
-
-    if (searchBox.classList.contains('hidden') === false) {
-      const searchInput = document.getElementById('search-input');
-      if (searchInput) searchInput.focus();
-    }
+    if (show === null) searchBox.classList.toggle('hidden');
+    else if (show !== isVisible) searchBox.classList.toggle('hidden', !show);
+    if (!searchBox.classList.contains('hidden')) document.getElementById('search-input')?.focus();
   }
 
   setupSearch() {
     const searchButton = document.getElementById('search-toggle');
     const searchInput = document.getElementById('search-input');
 
-    if (searchButton) {
-      searchButton.addEventListener('click', () => this.toggleSearch());
-    }
-
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        this.performSearch(e.target.value);
-      });
-    }
+    if (searchButton) searchButton.addEventListener('click', () => this.toggleSearch());
+    if (searchInput) searchInput.addEventListener('input', (e) => this.performSearch(e.target.value));
 
     document.addEventListener('click', (e) => {
       const searchContainer = document.querySelector('.search-container');
-      if (searchContainer && !searchContainer.contains(e.target)) {
-        this.toggleSearch(false);
-      }
+      if (searchContainer && !searchContainer.contains(e.target)) this.toggleSearch(false);
     });
   }
 }
 
-// Particles Effect
+// ===============================
+// ✨ PARTICLES MANAGER
+// ===============================
 class ParticlesManager {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
@@ -422,74 +362,40 @@ class ParticlesManager {
 
   createParticles() {
     const particleCount = 20;
-
+    const colors = ['from-purple-400 to-blue-400', 'from-blue-400 to-cyan-400', 'from-cyan-400 to-purple-400'];
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.className = 'floating-particle';
       particle.style.left = Math.random() * 100 + '%';
       particle.style.top = Math.random() * 100 + '%';
       particle.style.animationDelay = Math.random() * 10 + 's';
-
-      const colors = [
-        'from-purple-400 to-blue-400',
-        'from-blue-400 to-cyan-400',
-        'from-cyan-400 to-purple-400'
-      ];
-
-      particle.innerHTML = `
-        <div class="w-1 h-1 bg-gradient-to-r ${colors[i % 3]} rounded-full opacity-60"></div>
-      `;
-
+      particle.innerHTML = `<div class="w-1 h-1 bg-gradient-to-r ${colors[i % 3]} rounded-full opacity-60"></div>`;
       this.container.appendChild(particle);
       this.particles.push(particle);
     }
   }
 }
 
-// Initialize everything when DOM is loaded
+// ===============================
+// 🚀 INITIALIZATION
+// ===============================
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize all managers
   const themeManager = new ThemeManager();
   const navigationManager = new NavigationManager();
   const searchManager = new SearchManager();
   const particlesManager = new ParticlesManager('particles');
   const countdownTimer = new CountdownTimer('2025-11-01T09:00:00', 'countdown');
 
+  // Make managers globally accessible
   window.themeManager = themeManager;
   window.navigationManager = navigationManager;
   window.searchManager = searchManager;
-
-  const themeToggle = document.getElementById('theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => themeManager.toggleTheme());
-  }
-
-  const searchToggle = document.getElementById('search-toggle');
-  if (searchToggle) {
-    searchToggle.addEventListener('click', () => searchManager.toggleSearch());
-  }
-
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      navigationManager.scrollToSection(targetId);
-
-      if (mobileMenu) {
-        mobileMenu.classList.add('hidden');
-      }
-    });
-  });
 });
 
-// Global utility functions
+// ===============================
+// 🌐 GLOBAL UTILITY FUNCTIONS
+// ===============================
 function toggleTheme() {
   if (window.themeManager) {
     window.themeManager.toggleTheme();
@@ -510,7 +416,12 @@ function toggleSearch() {
 
 function toggleMobileMenu() {
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  
   if (mobileMenu) {
     mobileMenu.classList.toggle('hidden');
+    if (menuIcon) menuIcon.classList.toggle('hidden');
+    if (closeIcon) closeIcon.classList.toggle('hidden');
   }
 }

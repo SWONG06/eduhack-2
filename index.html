@@ -58,8 +58,10 @@
       <div class="flex justify-between items-center h-16 sm:h-18">
         <!-- Logo -->
         <button onclick="scrollToSection('hero')" class="flex items-center cursor-pointer shrink-0 group hover:scale-105 transition-transform duration-200">
-          <img id="logo-light" src="public/modonoche.png" alt="Logo claro" class="h-12 sm:h-14 md:h-16 w-auto object-contain dark:hidden">
-          <img id="logo-dark" src="public/segundologo.png" alt="Logo oscuro" class="h-12 sm:h-14 md:h-16 w-auto object-contain hidden dark:block">
+          <img id="logo-light" src="public/modonoche.png" alt="Logo claro" 
+            class="h-8 sm:h-10 md:h-12 w-auto object-contain dark:hidden">
+          <img id="logo-dark" src="public/segundologo.png" alt="Logo oscuro" 
+            class="h-8 sm:h-10 md:h-12 w-auto object-contain hidden dark:block">
         </button>
 
         <!-- Desktop Nav -->
@@ -71,40 +73,80 @@
           <button onclick="scrollToSection('bases')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">BASES</button>
           <button onclick="scrollToSection('registro')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">REGISTRO</button>
         </div>
-
+        
         <!-- Controls -->
         <div class="flex items-center gap-2 relative">
-          <!-- Search -->
-          <div class="hidden sm:flex items-center bg-gray-100 dark:bg-gray-800 rounded-md px-2 transition-all duration-300">
-            <input id="search-input" type="text" placeholder="Buscar..." class="bg-transparent focus:outline-none text-gray-700 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 px-2 py-1 w-32 focus:w-48 transition-all duration-300">
-            <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 10.65A6 6 0 1110.65 4.35a6 6 0 016 6.3z" />
-            </svg>
+          <!-- Search Container -->
+          <div class="search-container relative">
+            <button id="search-toggle" 
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    aria-label="Buscar">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </button>
+
+            <!-- Search Box -->
+            <div id="search-box" 
+                 class="hidden absolute right-0 top-full mt-2 w-screen max-w-sm rounded-xl border shadow-2xl bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 overflow-hidden z-[1000]">
+              
+              <!-- Search Input Container -->
+              <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex gap-2 items-center bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-2">
+                  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                  </svg>
+                  <input id="search-input"
+                         type="search"
+                         placeholder="Buscar contenido..."
+                         autocomplete="off"
+                         class="w-full bg-transparent border-0 focus:outline-none text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400">
+                </div>
+              </div>
+              
+              <!-- Search Results Container -->
+              <div id="search-results" 
+                   class="max-h-96 overflow-y-auto p-2">
+                <p class="text-sm text-gray-500 dark:text-gray-400 px-2 py-4 text-center">
+                  Escribe para buscar...
+                </p>
+              </div>
+            </div>
           </div>
 
           <!-- Theme Toggle -->
-          <button id="theme-toggle" class="h-10 w-10 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:scale-110 transition-transform rounded-md p-2">
-            <svg id="sun-icon" class="h-5 w-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          <button id="theme-toggle" 
+                  class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" 
+                  aria-label="Cambiar tema">
+            <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+              </path>
             </svg>
-            <svg id="moon-icon" class="h-5 w-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            <svg id="moon-icon" class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+              </path>
             </svg>
           </button>
 
-          <!-- Mobile Menu -->
+          <!-- Mobile Menu Button -->
           <div class="lg:hidden">
-            <button id="mobile-menu-button" onclick="toggleMobileMenu()" class="h-10 w-10 text-gray-800 dark:text-gray-200 rounded-md p-2">
-              <svg id="menu-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <button id="mobile-menu-button" 
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
-              <svg id="close-icon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
           </div>
         </div>
-      </div>
 
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden lg:hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800/50">
@@ -139,8 +181,8 @@
           </div>
 
           <h1 class="text-center lg:text-left">
-            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient leading-none"> Hackathon 2025</span>
-            <span class="block text-2xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold bg-gradient-to-r from-cyan-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient mt-2">2025</span>
+            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient leading-none"> Hackathon</span>
+            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient leading-none"> 2025</span>
           </h1>
 
           <p class="text-2xl sm:text-3xl md:text-4xl text-gray-700 dark:text-gray-300 leading-relaxed">"Educación Superior sin deserción estudiantil: El poder de los agentes de IA"</p>
@@ -1068,87 +1110,6 @@
   </div>
 </footer>
   <!-- Scripts -->
-  <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-    
-    themeToggle.addEventListener('click', () => {
-      htmlElement.classList.toggle('dark');
-      localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
-    });
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    if (savedTheme === 'dark') {
-      htmlElement.classList.add('dark');
-    }
-
-    // Mobile Menu
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
-      
-      menu.classList.toggle('hidden');
-      menuIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
-    }
-
-    // Scroll to Section
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-      if (window.innerWidth < 1024) {
-        const menu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-        if (!menu.classList.contains('hidden')) {
-          menu.classList.add('hidden');
-          menuIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-        }
-      }
-    }
-
-    // Countdown Timer
-    function updateCountdown() {
-      const targetDate = new Date('2025-11-01').getTime();
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance > 0) {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        const countdownHTML = `
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-purple-600 dark:text-purple-400">${days}</div>
-            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Días</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400">${hours}</div>
-            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Horas</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-cyan-600 dark:text-cyan-400">${minutes}</div>
-            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Minutos</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-bold text-pink-600 dark:text-pink-400">${seconds}</div>
-            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Segundos</div>
-          </div>
-        `;
-        document.getElementById('countdown').innerHTML = countdownHTML;
-      }
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
