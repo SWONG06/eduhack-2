@@ -1,35 +1,138 @@
-// Theme Management
+// Theme Management - Sistema completo de temas claro/oscuro
 class ThemeManager {
   constructor() {
+    this.STORAGE_KEY = 'eduhack-theme';
+    this.LIGHT_CLASS = 'light';
+    this.DARK_CLASS = 'dark';
     this.init();
   }
 
   init() {
     this.loadSavedTheme();
     this.setupThemeToggle();
+    this.watchSystemPreference();
   }
 
+  /**
+   * Carga el tema guardado o usa la preferencia del sistema
+   */
   loadSavedTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem(this.STORAGE_KEY);
+    const html = document.documentElement;
 
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      document.documentElement.classList.add('dark');
+    if (savedTheme === 'dark') {
+      this.setTheme('dark');
+    } else if (savedTheme === 'light') {
+      this.setTheme('light');
     } else {
-      document.documentElement.classList.remove('dark');
+      // Usar preferencia del sistema
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.setTheme(prefersDark ? 'dark' : 'light');
     }
   }
 
-  toggleTheme() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  /**
+   * Aplica el tema a toda la página
+   */
+  setTheme(theme) {
+    const html = document.documentElement;
+
+    if (theme === 'dark') {
+      html.classList.remove(this.LIGHT_CLASS);
+      html.classList.add(this.DARK_CLASS);
+      localStorage.setItem(this.STORAGE_KEY, 'dark');
+      this.updateThemeAttribute('dark');
+    } else {
+      html.classList.remove(this.DARK_CLASS);
+      html.classList.add(this.LIGHT_CLASS);
+      localStorage.setItem(this.STORAGE_KEY, 'light');
+      this.updateThemeAttribute('light');
+    }
+
+    this.updateToggleButton();
+    this.dispatchThemeChangeEvent(theme);
   }
 
+  /**
+   * Cambia entre tema claro y oscuro
+   */
+  toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.classList.contains(this.DARK_CLASS);
+    this.setTheme(isDark ? 'light' : 'dark');
+  }
+
+  /**
+   * Obtiene el tema actual
+   */
+  getCurrentTheme() {
+    const html = document.documentElement;
+    return html.classList.contains(this.DARK_CLASS) ? 'dark' : 'light';
+  }
+
+  /**
+   * Actualiza el atributo data-theme del HTML
+   */
+  updateThemeAttribute(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+  }
+
+  /**
+   * Actualiza el estado visual del botón de toggle
+   */
+  updateToggleButton() {
+    const toggleButton = document.getElementById('theme-toggle');
+    if (!toggleButton) return;
+
+    const sunIcon = toggleButton.querySelector('#sun-icon');
+    const moonIcon = toggleButton.querySelector('#moon-icon');
+    const isDark = this.getCurrentTheme() === 'dark';
+
+    if (sunIcon && moonIcon) {
+      if (isDark) {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+  }
+
+  /**
+   * Configura el botón toggle
+   */
   setupThemeToggle() {
     const toggleButton = document.getElementById('theme-toggle');
     if (toggleButton) {
       toggleButton.addEventListener('click', () => this.toggleTheme());
+      this.updateToggleButton();
     }
+  }
+
+  /**
+   * Observa cambios en la preferencia del sistema
+   */
+  watchSystemPreference() {
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    darkModeQuery.addEventListener('change', (e) => {
+      if (!localStorage.getItem(this.STORAGE_KEY)) {
+        this.setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  /**
+   * Dispara un evento personalizado cuando cambia el tema
+   */
+  dispatchThemeChangeEvent(theme) {
+    const event = new CustomEvent('themeChange', {
+      detail: { theme },
+      bubbles: true
+    });
+    document.dispatchEvent(event);
   }
 }
 
@@ -295,7 +398,6 @@ class SearchManager {
       });
     }
 
-    // Close search on outside click
     document.addEventListener('click', (e) => {
       const searchContainer = document.querySelector('.search-container');
       if (searchContainer && !searchContainer.contains(e.target)) {
@@ -346,33 +448,26 @@ class ParticlesManager {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize managers
   const themeManager = new ThemeManager();
   const navigationManager = new NavigationManager();
   const searchManager = new SearchManager();
   const particlesManager = new ParticlesManager('particles');
+  const countdownTimer = new CountdownTimer('2025-11-01T09:00:00', 'countdown');
 
-  // Initialize countdown timer
-  const countdownTimer = new CountdownTimer('2025-03-15T09:00:00', 'countdown');
-
-  // Make managers globally accessible for onclick handlers
   window.themeManager = themeManager;
   window.navigationManager = navigationManager;
   window.searchManager = searchManager;
 
-  // Setup theme toggle button
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', () => themeManager.toggleTheme());
   }
 
-  // Setup search toggle
   const searchToggle = document.getElementById('search-toggle');
   if (searchToggle) {
     searchToggle.addEventListener('click', () => searchManager.toggleSearch());
   }
 
-  // Setup mobile menu
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   if (mobileMenuButton && mobileMenu) {
@@ -381,14 +476,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Setup navigation links
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href').substring(1);
       navigationManager.scrollToSection(targetId);
 
-      // Close mobile menu if open
       if (mobileMenu) {
         mobileMenu.classList.add('hidden');
       }
@@ -396,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Utility functions for global access
+// Global utility functions
 function toggleTheme() {
   if (window.themeManager) {
     window.themeManager.toggleTheme();

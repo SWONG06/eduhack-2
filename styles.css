@@ -1,345 +1,521 @@
-/* Custom CSS Variables for Themes */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --primary: 258 90% 66%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 197 71% 73%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 258 90% 66%;
-  --radius: 0.75rem;
-  --tech-primary: 258 90% 66%;
-  --tech-secondary: 197 71% 73%;
-  --tech-accent: 280 100% 70%;
-  --navbar-bg: 0 0% 100%;
-  --hero-gradient: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(197 71% 73%) 50%, hsl(280 100% 70%) 100%);
-}
+/* ============================================
+   CUSTOM CSS VARIABLES PARA TEMAS
+   ============================================ */
 
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --primary: 258 90% 66%;
-  --primary-foreground: 240 10% 3.9%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 197 71% 73%;
-  --accent-foreground: 240 10% 3.9%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 258 90% 66%;
-  --navbar-bg: 240 10% 3.9%;
-}
-
-* {
-  border-color: hsl(var(--border));
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  transition: background-color 0.3s, color 0.3s;
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-}
-
-.hover-scale {
-  transition: transform 0.2s;
-}
-
-.hover-scale:hover {
-  transform: scale(1.05);
-}
-
-.glass {
-  background: hsl(var(--glass-bg));
-  border: 1px solid hsl(var(--glass-border));
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.bg-gradient-primary {
-  background: var(--hero-gradient);
-}
-
-.text-gradient {
-  background: var(--hero-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 3s ease infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes pulse-glow {
-  0% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-/* Component Styles */
-.card {
-  background-color: hsl(var(--card));
-  color: hsl(var(--card-foreground));
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  outline: none;
-  transition: all 0.2s;
-}
-
-.button:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.button-primary {
-  background: var(--hero-gradient);
-  color: hsl(var(--primary-foreground));
-}
-
-.button-primary:hover {
-  opacity: 0.9;
-}
-
-.input {
-  display: flex;
-  height: 2.5rem;
-  width: 100%;
-  border-radius: 0.375rem;
-  border: 1px solid hsl(var(--input));
-  background-color: hsl(var(--background));
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  outline: none;
-  transition: all 0.2s;
-}
-
-.input:focus {
-  border-color: hsl(var(--ring));
-  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
-}
-
-.input:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 9999px;
-  border: 1px solid;
-  padding: 0.25rem 0.625rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-/* Section specific styles */
-.hero-section {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-}
-
-.navbar-theme {
-  background-color: hsl(var(--navbar-bg));
-  color: hsl(var(--foreground));
-  border-color: hsl(var(--border));
-}
-
-.footer-theme {
-  background-color: hsl(var(--muted) / 0.5);
-  color: hsl(var(--muted-foreground));
-  border-color: hsl(var(--border));
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: hsl(var(--background));
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--tech-primary) / 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--tech-primary) / 0.5);
-}
-
-/* Firefox scrollbar */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--tech-primary) / 0.3) hsl(var(--background));
-}
-
-/* Global transitions */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Challenge Cards */
-.group {
-  position: relative;
-}
-
-.group:hover svg {
-  filter: brightness(1.2);
-}
-
-/* Delay animations */
-.delay-1000 {
-  animation-delay: 1s;
-}
-
-/* Nav link animations */
-.nav-link {
-  position: relative;
-  overflow: hidden;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, hsl(var(--tech-primary)), transparent);
-  transition: left 0.3s ease;
-}
-
-.nav-link:hover::after {
-  left: 100%;
-}
-
-/* Countdown timer styles */
-#countdown {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  #countdown {
-    gap: 0.5rem;
+   :root {
+    /* Colores base - Modo Claro */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    
+    /* Colores primarios */
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    
+    /* Colores mutados */
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    
+    /* Colores de acento */
+    --accent: 197 71% 73%;
+    --accent-foreground: 240 5.9% 10%;
+    
+    /* Estados */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Bordes e inputs */
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 258 90% 66%;
+    --radius: 0.75rem;
+    
+    /* Colores tecnológicos */
+    --tech-primary: 258 90% 66%;
+    --tech-secondary: 197 71% 73%;
+    --tech-accent: 280 100% 70%;
+    
+    /* Navbar */
+    --navbar-bg: 0 0% 100%;
+    --navbar-border: 240 5.9% 90%;
+    --navbar-text: 240 10% 3.9%;
+    
+    /* Gradientes */
+    --hero-gradient: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(197 71% 73%) 50%, hsl(280 100% 70%) 100%);
+    --section-bg-alt: 240 4.8% 95.9%;
   }
-}
-
-/* Animations for entrance */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  
+  /* ============================================
+     MODO OSCURO
+     ============================================ */
+  
+  .dark {
+    /* Colores base - Modo Oscuro */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    
+    /* Colores primarios */
+    --primary: 258 90% 66%;
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Colores mutados */
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    
+    /* Colores de acento */
+    --accent: 197 71% 73%;
+    --accent-foreground: 240 10% 3.9%;
+    
+    /* Estados */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Bordes e inputs */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 258 90% 66%;
+    
+    /* Navbar */
+    --navbar-bg: 240 10% 3.9%;
+    --navbar-border: 240 3.7% 15.9%;
+    --navbar-text: 0 0% 98%;
+    
+    /* Secciones alternas */
+    --section-bg-alt: 240 3.7% 15.9%;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  /* ============================================
+     ESTILOS GLOBALES
+     ============================================ */
+  
+  * {
+    border-color: hsl(var(--border));
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    line-height: 1.6;
   }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
+  
+  /* ============================================
+     COMPONENTES BÁSICOS
+     ============================================ */
+  
+  /* Tarjetas */
+  .card {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  
+  .card:hover {
+    border-color: hsl(var(--ring) / 0.5);
+    box-shadow: 0 0 20px hsl(var(--ring) / 0.1);
   }
-}
-
-/* Smooth transitions for theme changes */
-.theme-transition {
-  transition: background-color 0.3s ease, color 0.3s ease !important;
-}
-
-/* Focus styles for accessibility */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-}
-
-/* Disabled state styles */
-button:disabled,
-input:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Loading animation */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+  
+  /* Botones */
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    padding: 0.625rem 1.25rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-/* Float animation */
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-}
+  
+  .button:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  .button-primary {
+    background: var(--hero-gradient);
+    color: hsl(var(--primary-foreground));
+  }
+  
+  .button-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+  
+  .button-secondary {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  
+  .button-secondary:hover {
+    background-color: hsl(var(--secondary) / 0.8);
+  }
+  
+  /* Inputs */
+  .input {
+    display: flex;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--input));
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+  
+  .input:focus {
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
+    outline: none;
+  }
+  
+  .input::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background-color: hsl(var(--muted));
+  }
+  
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid hsl(var(--border));
+    padding: 0.375rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    transition: all 0.2s ease;
+  }
+  
+  .badge:hover {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  
+  /* ============================================
+     NAVBAR Y NAVEGACIÓN
+     ============================================ */
+  
+  nav {
+    background-color: hsl(var(--navbar-bg));
+    color: hsl(var(--navbar-text));
+    border-bottom: 1px solid hsl(var(--navbar-border));
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link {
+    position: relative;
+    color: hsl(var(--navbar-text));
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--tech-primary)), transparent);
+    transition: left 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: hsl(var(--primary));
+  }
+  
+  .nav-link:hover::after {
+    left: 100%;
+  }
+  
+  /* ============================================
+     SECCIONES
+     ============================================ */
+  
+  section {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s ease;
+  }
+  
+  section:nth-child(even) {
+    background-color: hsl(var(--section-bg-alt) / 0.3);
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+    color: hsl(var(--foreground));
+  }
+  
+  .dark .hero-section {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+  }
+  
+  /* ============================================
+     TEXTOS Y TIPOGRAFÍA
+     ============================================ */
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--foreground));
+    font-weight: 900;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+  }
+  
+  p {
+    color: hsl(var(--muted-foreground));
+    transition: color 0.3s ease;
+  }
+  
+  a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: hsl(var(--accent));
+  }
+  
+  /* ============================================
+     EFECTOS Y ANIMACIONES
+     ============================================ */
+  
+  .glass {
+    background: hsl(var(--background) / 0.8);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .text-gradient {
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  /* ============================================
+     SCROLLBAR PERSONALIZADO
+     ============================================ */
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--tech-primary) / 0.3);
+    border-radius: 5px;
+    border: 2px solid hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--tech-primary) / 0.6);
+  }
+  
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--tech-primary) / 0.3) hsl(var(--background));
+  }
+  
+  /* ============================================
+     ACCESIBILIDAD
+     ============================================ */
+  
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* ============================================
+     MODO IMPRESIÓN
+     ============================================ */
+  
+  @media print {
+    body {
+      background-color: white;
+      color: black;
+    }
+  
+    nav, footer {
+      display: none;
+    }
+  }
+  
+  /* ============================================
+     RESPONSIVE DESIGN
+     ============================================ */
+  
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+  
+    .button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+  
+    nav {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    h2 {
+      font-size: 1.25rem;
+    }
+  
+    .button {
+      width: 100%;
+    }
+  }
+  
+  /* ============================================
+     PREFERENCIA DEL SISTEMA
+     ============================================ */
+  
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+      color-scheme: dark;
+    }
+  
+    :root.light {
+      color-scheme: light;
+    }
+  }
