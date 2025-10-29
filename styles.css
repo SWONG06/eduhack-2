@@ -1,0 +1,241 @@
+/* Custom CSS Variables for Themes */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --primary: 258 90% 66%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 197 71% 73%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 258 90% 66%;
+  --radius: 0.75rem;
+
+  --tech-primary: 258 90% 66%;
+  --tech-secondary: 197 71% 73%;
+  --tech-accent: 280 100% 70%;
+  --navbar-bg: 0 0% 100%;
+  --hero-gradient: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(197 71% 73%) 50%, hsl(280 100% 70%) 100%);
+  --glow-primary: 258 90% 66% / 0.3;
+  --glow-secondary: 197 71% 73% / 0.2;
+  --particle-color: 258 90% 66% / 0.4;
+  --grid-color: 258 90% 66% / 0.08;
+  --glass-bg: 255 255 255 / 0.1;
+  --glass-border: 255 255 255 / 0.2;
+  --text-primary: 240 10% 3.9%;
+  --text-secondary: 240 3.8% 46.1%;
+  --text-muted: 240 5% 64.9%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --primary: 258 90% 66%;
+  --primary-foreground: 240 10% 3.9%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 197 71% 73%;
+  --accent-foreground: 240 10% 3.9%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 258 90% 66%;
+
+  --tech-primary: 258 90% 66%;
+  --tech-secondary: 197 71% 73%;
+  --tech-accent: 280 100% 70%;
+  --navbar-bg: 240 10% 3.9%;
+  --hero-gradient: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(197 71% 73%) 50%, hsl(280 100% 70%) 100%);
+  --glow-primary: 258 90% 66% / 0.5;
+  --glow-secondary: 197 71% 73% / 0.3;
+  --particle-color: 258 90% 66% / 0.6;
+  --grid-color: 258 90% 66% / 0.1;
+  --glass-bg: 0 0% 0% / 0.3;
+  --glass-border: 255 255 255 / 0.1;
+  --text-primary: 0 0% 98%;
+  --text-secondary: 240 5% 64.9%;
+  --text-muted: 240 3.8% 46.1%;
+}
+
+* {
+  @apply border-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground transition-colors duration-300;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.glass {
+  background: hsl(var(--glass-bg));
+  border: 1px solid hsl(var(--glass-border));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.bg-gradient-primary {
+  background: var(--hero-gradient);
+}
+
+.text-gradient {
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.particle {
+  background: hsl(var(--particle-color));
+}
+
+.cyber-grid {
+  background-image:
+    linear-gradient(hsl(var(--grid-color)) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--grid-color)) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.floating-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  animation: float 10s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Component Styles */
+.card {
+  @apply bg-card text-card-foreground;
+}
+
+.button {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.button-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.button-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+.button-ghost {
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+.input {
+  @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+}
+
+.badge-secondary {
+  @apply border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+/* Section specific styles */
+.hero-section {
+  @apply bg-background text-foreground;
+}
+
+.navbar-theme {
+  background-color: hsl(var(--navbar-bg));
+  @apply text-foreground border-border;
+}
+
+.footer-theme {
+  @apply bg-muted/50 text-muted-foreground border-border;
+}
+
+.btn-primary {
+  background: var(--hero-gradient);
+  @apply text-primary-foreground border-0;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground border-border hover:bg-secondary/80;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--tech-primary) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--tech-primary) / 0.5);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--tech-primary) / 0.3) hsl(var(--background));
+}
+
+/* Theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
