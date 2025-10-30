@@ -102,7 +102,8 @@ class NavigationManager {
   }
 
   setupScrollSpy() {
-    const navLinks = document.querySelectorAll('.nav-link');
+    // Corregido: Seleccionar enlaces del navbar con href que empiecen con #
+    const navLinks = document.querySelectorAll('#navbar a[href^="#"]');
     const sections = document.querySelectorAll('section[id]');
 
     window.addEventListener('scroll', () => {
@@ -116,8 +117,9 @@ class NavigationManager {
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
           navLinks.forEach(link => {
             link.classList.remove('active');
-            const linkHref = link.getAttribute('onclick');
-            if (linkHref && linkHref.includes(`'${sectionId}'`)) {
+            // Corregido: Usar href en lugar de onclick
+            const linkHref = link.getAttribute('href');
+            if (linkHref && linkHref === `#${sectionId}`) {
               link.classList.add('active');
             }
           });
@@ -136,6 +138,7 @@ class NavigationManager {
         behavior: 'smooth'
       });
       
+      // Cerrar menú móvil después de navegar
       const mobileMenu = document.getElementById('mobile-menu');
       const menuIcon = document.getElementById('menu-icon');
       const closeIcon = document.getElementById('close-icon');
@@ -168,6 +171,18 @@ class NavigationManager {
         mobileMenu.classList.toggle('hidden');
         if (menuIcon) menuIcon.classList.toggle('hidden');
         if (closeIcon) closeIcon.classList.toggle('hidden');
+      });
+    }
+
+    // Cerrar menú al hacer click en un link
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileLinks) {
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          if (menuIcon) menuIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        });
       });
     }
   }
@@ -209,20 +224,20 @@ class CountdownTimer {
     if (!this.element) return;
     this.element.innerHTML = `
       <div class="time-unit">
-        <div class="time-value">${String(timeLeft.days).padStart(2, '0')}</div>
-        <div class="time-label">Días</div>
+        <div class="time-value text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100">${String(timeLeft.days).padStart(2, '0')}</div>
+        <div class="time-label text-xs sm:text-sm text-gray-600 dark:text-gray-400">Días</div>
       </div>
       <div class="time-unit">
-        <div class="time-value">${String(timeLeft.hours).padStart(2, '0')}</div>
-        <div class="time-label">Horas</div>
+        <div class="time-value text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100">${String(timeLeft.hours).padStart(2, '0')}</div>
+        <div class="time-label text-xs sm:text-sm text-gray-600 dark:text-gray-400">Horas</div>
       </div>
       <div class="time-unit">
-        <div class="time-value">${String(timeLeft.minutes).padStart(2, '0')}</div>
-        <div class="time-label">Min</div>
+        <div class="time-value text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100">${String(timeLeft.minutes).padStart(2, '0')}</div>
+        <div class="time-label text-xs sm:text-sm text-gray-600 dark:text-gray-400">Min</div>
       </div>
       <div class="time-unit">
-        <div class="time-value">${String(timeLeft.seconds).padStart(2, '0')}</div>
-        <div class="time-label">Seg</div>
+        <div class="time-value text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100">${String(timeLeft.seconds).padStart(2, '0')}</div>
+        <div class="time-label text-xs sm:text-sm text-gray-600 dark:text-gray-400">Seg</div>
       </div>
     `;
   }
@@ -373,7 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeManager = new ThemeManager();
   const navigationManager = new NavigationManager();
   const searchManager = new SearchManager();
-  const particlesManager = new ParticlesManager('particles');
   const countdownTimer = new CountdownTimer('2025-11-01T09:00:00', 'countdown');
 
   // Make managers globally accessible
