@@ -56,7 +56,6 @@
 </head>
 <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 antialiased">
   <!-- Navbar -->
-  <!-- Navbar -->
   <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 border-b bg-slate-900/95 backdrop-blur-md shadow-md border-slate-700/50">
     <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 sm:h-18">
@@ -84,9 +83,9 @@
           <!-- Search Container -->
           <div class="search-container relative">
             <button id="search-toggle" 
-                    class="p-2 rounded-lg hover:bg-gray-800 transition-colors"
+                    class="p-2 rounded-lg dark:hover:bg-gray-800 transition-colors"
                     aria-label="Buscar">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
               </svg>
@@ -184,137 +183,80 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="hero" class="min-h-screen bg-white dark:bg-black relative overflow-hidden pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20 dark:from-purple-900/30 dark:to-blue-900/30"></div>
-      <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/10 via-transparent to-purple-900/10 dark:from-cyan-900/20 dark:to-purple-900/20"></div>
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-[100px] animate-pulse-glow"></div>
-      <div class="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] bg-blue-400/15 dark:bg-blue-600/15 rounded-full blur-[120px] animate-pulse-glow"></div>
-    </div>
+<section
+  id="hero"
+  class="min-h-screen bg-white dark:bg-black relative overflow-hidden pt-16 pb-12 px-4 sm:px-6 lg:px-8"
+  style="background-image: url('/images/segundol.png'); background-size: 107%; background-position: right center; background-repeat: no-repeat; background-color: #132e9b;"
+>
+  <!-- Efectos de fondo -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20 dark:from-purple-900/30 dark:to-blue-900/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/10 via-transparent to-purple-900/10 dark:from-cyan-900/20 dark:to-purple-900/20"></div>
+    <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-[90px] animate-pulse-glow"></div>
+    <div class="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] bg-blue-400/15 dark:bg-blue-600/15 rounded-full blur-[110px] animate-pulse-glow"></div>
+  </div>
 
-    <div class="relative z-10 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[85vh]">
-        <div class="text-center lg:text-left space-y-8 lg:space-y-10">
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600/10 to-blue-600/10 border border-purple-500/30 backdrop-blur-xl animate-pulse-glow">
-            <svg class="w-5 h-5 text-purple-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            <span class="text-lg font-semibold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">EVENTO OFICIAL TECSUP 2025</span>
-            <svg class="w-4 h-4 text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+  <!-- Contenido principal -->
+  <div class="relative z-10 pt-12 pb-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+
+      <!-- Texto -->
+      <div class="text-center lg:text-left space-y-6 lg:space-y-8">
+        <!-- Badge superior -->
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600/10 to-blue-600/10 border border-purple-500/30 backdrop-blur-xl animate-pulse-glow">
+          <svg class="w-5 h-5 text-purple-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <span class="text-base sm:text-lg font-semibold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            EVENTO OFICIAL TECSUP 2025
+          </span>
+        </div>
+
+        <!-- Título -->
+        <h1 class="text-center lg:text-left leading-tight">
+          <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-[6.5rem] font-extrabold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+            Hackathon
+          </span>
+          <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-[6.5rem] font-extrabold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+            2025
+          </span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          "Educación Superior sin deserción estudiantil: El poder de los agentes de IA"
+        </p>
+
+        <!-- Info Boxes -->
+        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-5">
+          <div class="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg hover:border-purple-500/40 transition-all duration-300">
+            <img src="/images/Calendario.png" alt="Calendario" class="w-7 h-7 sm:w-9 sm:h-9 object-contain">
+            <span class="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100">1 de noviembre</span>
           </div>
-
-          <h1 class="text-center lg:text-left">
-            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient leading-none"> Hackathon</span>
-            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient leading-none"> 2025</span>
-          </h1>
-
-          <p class="text-2xl sm:text-3xl md:text-4xl text-gray-700 dark:text-gray-300 leading-relaxed">"Educación Superior sin deserción estudiantil: El poder de los agentes de IA"</p>
-
-          <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
-            <div class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg hover:border-purple-500/40 transition-all duration-300">
-              <img src="/images/Calendario.png" alt="Calendario" class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
-              <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">1 de noviembre</span>
-            </div>
-            <div class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg hover:border-purple-500/40 transition-all duration-300">
-              <img src="/images/Laptop.png" alt="Laptop" class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
-              <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">Modalidad Virtual</span>
-            </div>
-          </div>
-
-          <div class="relative p-6 rounded-3xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg">
-            <p class="text-center text-lg text-gray-600 dark:text-gray-400 mb-4 font-medium">COMIENZA EN</p>
-            <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4"></div>
+          <div class="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg hover:border-purple-500/40 transition-all duration-300">
+            <img src="/images/Laptop.png" alt="Laptop" class="w-7 h-7 sm:w-9 sm:h-9 object-contain">
+            <span class="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100">Modalidad Virtual</span>
           </div>
         </div>
 
-        <div class="flex justify-center lg:justify-end relative">
-          <img src="/images/modonoche.png" alt="Logo TECSUP Claro" class="relative w-[300px] sm:w-[400px] md:w-[500px] object-contain transition-transform duration-500 hover:scale-110 dark:hidden">
-<img src="/images/segundologo.png" alt="Logo TECSUP Oscuro" class="relative w-[300px] sm:w-[400px] md:w-[500px] object-contain transition-transform duration-500 hover:scale-110 hidden dark:block">
+        <!-- Contador -->
+        <div class="relative p-5 rounded-3xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg">
+          <p class="text-center text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-3 font-medium">
+            COMIENZA EN
+          </p>
+          <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4"></div>
         </div>
+      </div>
+
+      <!-- Imagen -->
+      <div class="flex justify-center lg:justify-end relative">
+        <img src="/images/modonoche.png" alt="Logo TECSUP Claro" class="relative w-[260px] sm:w-[350px] md:w-[440px] object-contain transition-transform duration-500 hover:scale-105 dark:hidden">
+        <img src="/images/segundologo.png" alt="Logo TECSUP Oscuro" class="relative w-[260px] sm:w-[350px] md:w-[440px] object-contain transition-transform duration-500 hover:scale-105 hidden dark:block">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Info Section -->
-  <section id="info" class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-20 max-w-7xl mx-auto">
-      <div class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 backdrop-blur-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl rounded-2xl">
-        <div class="p-6 sm:p-8 text-center relative">
-          <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-blue-500/10 dark:bg-blue-400/20 group-hover:bg-blue-500/20 dark:group-hover:bg-blue-400/30 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 border border-gray-200 dark:border-gray-800">
-            <svg class="relative w-10 h-10 sm:w-12 sm:h-12 text-blue-600 dark:text-blue-400 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-          </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 group-hover:text-purple-600 transition-colors duration-300">Desarrollo Innovador</h3>
-          <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">Usa las últimas tecnologías para crear soluciones que impacten positivamente en la sociedad.</p>
-        </div>
-      </div>
-
-      <div class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 backdrop-blur-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl rounded-2xl">
-        <div class="p-6 sm:p-8 text-center relative">
-          <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-purple-500/10 dark:bg-purple-400/20 group-hover:bg-purple-500/20 dark:group-hover:bg-purple-400/30 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 border border-gray-200 dark:border-gray-800">
-            <svg class="relative w-10 h-10 sm:w-12 sm:h-12 text-purple-600 dark:text-purple-400 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-          </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 group-hover:text-purple-600 transition-colors duration-300">Equipos Multidisciplinarios</h3>
-          <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">Forma equipos de hasta 4 personas combinando diferentes especialidades y habilidades.</p>
-        </div>
-      </div>
-
-      <div class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 backdrop-blur-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl rounded-2xl">
-        <div class="p-6 sm:p-8 text-center relative">
-          <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-orange-500/10 dark:bg-orange-400/20 group-hover:bg-orange-500/20 dark:group-hover:bg-orange-400/30 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 border border-gray-200 dark:border-gray-800">
-            <svg class="relative w-10 h-10 sm:w-12 sm:h-12 text-orange-600 dark:text-orange-400 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-          </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 group-hover:text-purple-600 transition-colors duration-300">Desafío con Agentes de IA</h3>
-          <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">Enfócate en crear un agente de IA que prevenga la deserción estudiantil.</p>
-        </div>
-      </div>
-
-      <div class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 backdrop-blur-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl rounded-2xl">
-        <div class="p-6 sm:p-8 text-center relative">
-          <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-green-500/10 dark:bg-green-400/20 group-hover:bg-green-500/20 dark:group-hover:bg-green-400/30 rounded-2xl mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 border border-gray-200 dark:border-gray-800">
-            <svg class="relative w-10 h-10 sm:w-12 sm:h-12 text-green-600 dark:text-green-400 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-          </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 group-hover:text-purple-600 transition-colors duration-300">Mentores Expertos</h3>
-          <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">Acceso a talleres desarrollados por los mentores de la industria tecnológica que te guiarán durante todo el evento.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <div class="group relative">
-        <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-purple-600/10 to-purple-600/5 dark:from-purple-600/20 dark:to-purple-600/10 border border-gray-200 dark:border-gray-800 backdrop-blur-sm hover:scale-105 hover:shadow-xl transition-all duration-300">
-          <div class="flex items-center justify-center mb-4">
-            <div class="p-3 sm:p-4 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-gray-200 dark:border-gray-800 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8 sm:w-10 sm:h-10 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            </div>
-          </div>
-          <div class="text-5xl sm:text-6xl md:text-7xl font-black text-purple-600 dark:text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300 text-center">200+</div>
-          <div class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 font-medium text-center">Participantes Esperados</div>
-        </div>
-      </div>
-
-      <div class="group relative">
-        <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-cyan-600/10 to-cyan-600/5 dark:from-cyan-600/20 dark:to-cyan-600/10 border border-gray-200 dark:border-gray-800 backdrop-blur-sm hover:scale-105 hover:shadow-xl transition-all duration-300">
-          <div class="flex items-center justify-center mb-4">
-            <div class="p-3 sm:p-4 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-gray-200 dark:border-gray-800 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8 sm:w-10 sm:h-10 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-            </div>
-          </div>
-          <div class="text-5xl sm:text-6xl md:text-7xl font-black text-cyan-600 dark:text-cyan-400 mb-3 group-hover:scale-110 transition-transform duration-300 text-center">5+</div>
-          <div class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 font-medium text-center">Mentores Expertos</div>
-        </div>
-      </div>
-
-      <div class="group relative">
-        <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-pink-600/10 to-pink-600/5 dark:from-pink-600/20 dark:to-pink-600/10 border border-gray-200 dark:border-gray-800 backdrop-blur-sm hover:scale-105 hover:shadow-xl transition-all duration-300">
-          <div class="flex items-center justify-center mb-4">
-            <div class="p-3 sm:p-4 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-gray-200 dark:border-gray-800 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8 sm:w-10 sm:h-10 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-            </div>
-          </div>
-          <div class="text-5xl sm:text-6xl md:text-7xl font-black text-pink-600 dark:text-pink-400 mb-3 group-hover:scale-110 transition-transform duration-300 text-center">5+</div>
-          <div class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 font-medium text-center">Categorías de Desafíos</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Challenges Grid Section -->
   <section id="desafios" class="py-16 sm:py-20 md:py-24 bg-white dark:bg-black relative overflow-hidden">
