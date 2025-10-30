@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="light">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,9 @@
   <meta name="description" content="Hackathon TECSUP 2025 - Innovación y tecnología en acción">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Hackathon2025</title>
+
+  <!-- Enlace al archivo CSS externo -->
+  <link rel="stylesheet" href="/css/styles.css">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -53,25 +56,24 @@
 </head>
 <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 antialiased">
   <!-- Navbar -->
-  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 border-b bg-white/95 dark:bg-black/95 backdrop-blur-md shadow-md border-gray-200/50 dark:border-gray-800/50">
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 border-b bg-slate-900/95 backdrop-blur-md shadow-md border-slate-700/50">
     <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 sm:h-18">
         <!-- Logo -->
         <button onclick="scrollToSection('hero')" class="flex items-center cursor-pointer shrink-0 group hover:scale-105 transition-transform duration-200">
-          <img id="logo-light" src="public/modonoche.png" alt="Logo claro" 
-            class="h-8 sm:h-10 md:h-12 w-auto object-contain dark:hidden">
-          <img id="logo-dark" src="public/segundologo.png" alt="Logo oscuro" 
-            class="h-8 sm:h-10 md:h-12 w-auto object-contain hidden dark:block">
+          <img id="logo-dark" src="/images/segundologo.png" alt="Logo Tecsup" 
+            class="h-8 sm:h-10 md:h-12 w-auto object-contain block">
         </button>
 
         <!-- Desktop Nav -->
         <div class="hidden lg:flex items-center space-x-6">
-          <button onclick="scrollToSection('hero')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">INICIO</button>
-          <button onclick="scrollToSection('info')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">INFO</button>
-          <button onclick="scrollToSection('desafios')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">DESAFÍOS</button>
-          <button onclick="scrollToSection('premios')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">PREMIOS</button>
-          <button onclick="scrollToSection('bases')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">BASES</button>
-          <button onclick="scrollToSection('registro')" class="nav-link text-lg font-medium hover:scale-105 transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-500">REGISTRO</button>
+          <button onclick="scrollToSection('hero')" class="nav-link text-sm font-semibold uppercase tracking-wide hover:scale-105 transition-all duration-200 text-gray-200 hover:text-cyan-400">INICIO</button>
+          <button onclick="scrollToSection('info')" class="nav-link text-sm font-semibold uppercase tracking-wide hover:scale-105 transition-all duration-200 text-gray-200 hover:text-cyan-400">INFO</button>
+          <button onclick="scrollToSection('desafios')" class="nav-link text-sm font-semibold uppercase tracking-wide hover:scale-105 transition-all duration-200 text-gray-200 hover:text-cyan-400">DESAFÍOS</button>
+          <button onclick="scrollToSection('premios')" class="nav-link text-sm font-semibold uppercase tracking-wide hover:scale-105 transition-all duration-200 text-gray-200 hover:text-cyan-400">PREMIOS</button>
+          <button onclick="scrollToSection('bases')" class="nav-link text-sm font-semibold uppercase tracking-wide hover:scale-105 transition-all duration-200 text-gray-200 hover:text-cyan-400">BASES</button>
+          <button onclick="scrollToSection('registro')" class="nav-link text-sm font-semibold uppercase tracking-wide hover:scale-105 transition-all duration-200 text-gray-200 hover:text-cyan-400">REGISTRO</button>
         </div>
         
         <!-- Controls -->
@@ -79,9 +81,9 @@
           <!-- Search Container -->
           <div class="search-container relative">
             <button id="search-toggle" 
-                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    class="p-2 rounded-lg hover:bg-gray-800 transition-colors"
                     aria-label="Buscar">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
               </svg>
@@ -89,12 +91,12 @@
 
             <!-- Search Box -->
             <div id="search-box" 
-                 class="hidden absolute right-0 top-full mt-2 w-screen max-w-sm rounded-xl border shadow-2xl bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 overflow-hidden z-[1000]">
+                 class="hidden absolute right-0 top-full mt-2 w-screen max-w-sm rounded-xl border shadow-2xl bg-gray-900 border-gray-700 overflow-hidden z-[1000]">
               
               <!-- Search Input Container -->
-              <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-                <div class="flex gap-2 items-center bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-2">
-                  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="p-4 border-b border-gray-700">
+                <div class="flex gap-2 items-center bg-gray-800 rounded-lg px-3 py-2">
+                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                   </svg>
@@ -102,30 +104,30 @@
                          type="search"
                          placeholder="Buscar contenido..."
                          autocomplete="off"
-                         class="w-full bg-transparent border-0 focus:outline-none text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400">
+                         class="w-full bg-transparent border-0 focus:outline-none text-gray-100 placeholder-gray-400">
                 </div>
               </div>
               
               <!-- Search Results Container -->
               <div id="search-results" 
                    class="max-h-96 overflow-y-auto p-2">
-                <p class="text-sm text-gray-500 dark:text-gray-400 px-2 py-4 text-center">
+                <p class="text-sm text-gray-400 px-2 py-4 text-center">
                   Escribe para buscar...
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Theme Toggle -->
+          <!-- Theme Toggle - Oculto -->
           <button id="theme-toggle" 
-                  class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" 
+                  class="hidden p-2 rounded-lg transition-colors" 
                   aria-label="Cambiar tema">
-            <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                     d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
               </path>
             </svg>
-            <svg id="moon-icon" class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                     d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
               </path>
@@ -135,8 +137,8 @@
           <!-- Mobile Menu Button -->
           <div class="lg:hidden">
             <button id="mobile-menu-button" 
-                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+              <svg id="menu-icon" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                       d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
@@ -189,11 +191,11 @@
 
           <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
             <div class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg hover:border-purple-500/40 transition-all duration-300">
-              <img src="public/Calendario.png" alt="Calendario" class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
+              <img src="/images/Calendario.png" alt="Calendario" class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
               <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">1 de noviembre</span>
             </div>
             <div class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl border border-purple-500/20 shadow-lg hover:border-purple-500/40 transition-all duration-300">
-              <img src="public/Laptop.png" alt="Laptop" class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
+              <img src="/images/Laptop.png" alt="Laptop" class="w-8 h-8 sm:w-10 sm:h-10 object-contain">
               <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">Modalidad Virtual</span>
             </div>
           </div>
@@ -205,8 +207,8 @@
         </div>
 
         <div class="flex justify-center lg:justify-end relative">
-          <img src="public/modonoche.png" alt="Logo TECSUP Claro" class="relative w-[300px] sm:w-[400px] md:w-[500px] object-contain transition-transform duration-500 hover:scale-110 dark:hidden">
-          <img src="public/segundologo.png" alt="Logo TECSUP Oscuro" class="relative w-[300px] sm:w-[400px] md:w-[500px] object-contain transition-transform duration-500 hover:scale-110 hidden dark:block">
+          <img src="/images/modonoche.png" alt="Logo TECSUP Claro" class="relative w-[300px] sm:w-[400px] md:w-[500px] object-contain transition-transform duration-500 hover:scale-110 dark:hidden">
+<img src="/images/segundologo.png" alt="Logo TECSUP Oscuro" class="relative w-[300px] sm:w-[400px] md:w-[500px] object-contain transition-transform duration-500 hover:scale-110 hidden dark:block">
         </div>
       </div>
     </div>
@@ -958,7 +960,7 @@
        rel="noopener noreferrer">
       <img
         class="w-32 h-32 object-contain cursor-pointer hover:scale-105 transition-transform duration-300"
-        src="public/qr.png"
+        src="/images/qr.png"
         alt="QR code for Google Form"
         loading="lazy"
       />
@@ -1110,6 +1112,6 @@
   </div>
 </footer>
   <!-- Scripts -->
-  <script src="script.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
